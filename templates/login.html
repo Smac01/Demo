@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta lang="en-US">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#2a2b2c">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#2a2b2c">
+	
+    <title>Login</title>
+
+	<!-- window styles -->
+	<style type="text/css">
+		* {
+	        margin: 0; padding: 0; box-sizing: border-box;
+	        scroll-behavior: smooth;
+	    }
+	    :root {
+	        --primary-color: #2d305a;
+	        --secondary-color: #787878;
+	        --standard-white: #ffffff;
+	        --light: #f1f1f1;
+	        --font-group: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+	    }
+	    ::-webkit-scrollbar {
+			width: 6px; height: 6px;
+		}
+		::-webkit-scrollbar-track {
+			background-color: transparent;
+		}
+		::-webkit-scrollbar-thumb {
+			background-color: #b7b7b7;
+			border-radius: 6px;
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: #d5d5d5;
+		}
+	    .flex-layout {
+			display: flex; align-items: center;
+		}
+		.grid-layout {
+			display: grid; align-items: center;
+			grid-template-columns: 0.1fr 0.1fr;
+		}
+		.center {
+			justify-content: center;
+		}
+		.start { justify-content: flex-start; }
+		.end { justify-content: flex-end; }
+	    .bb {
+	    	position: relative;
+	    	border-bottom: 1px solid var(--border-color);
+	    }
+	    hr {
+	    	width: 90%; border: none; border-top: 1px solid #ccc;
+	    	margin: 25px auto;
+	    }
+	</style>
+	<!-- form styles -->
+	<style type="text/css">
+		body {
+			font-family: var(--font-group); background-color: #fafafa;
+			background-color: #f2f9fd;
+		}
+		.wrapper {
+			margin: auto; height: 100vh;
+			background: honeydew;
+			background-size: cover;
+		}
+		form {
+			display: grid; gap: 30px 15px; background-color: #ffffff;
+			border-radius: 4px;
+		}
+		::placeholder { text-transform: capitalize;font-size: 14px; }
+		form label {
+			text-transform: capitalize; font-size: 20px; color: var(--secondary-color);
+			font-weight: 600;
+		}
+		form a {
+			color: #00bfff; text-decoration: none;font-weight: 600;
+			position: relative;
+		}
+		form a::after {
+			content: '';position: absolute; left: 0; bottom: 0;
+			width: 10px; height: 2px; background: #00bfff; transition: 0.5s width; 
+		}
+		form a:hover::after {
+			width: 100%;
+		}
+		.form-1, .form-2 {
+			display: flex; justify-content: center; padding: 30px;
+			flex-direction: column; height: fit-content; 
+			border-radius: 4px; width: 500px; height: 300px; 
+			box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+			background: url('data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1MDAiIHZpZXdCb3g9IjAgMCA1MDAgNTAwIiBmaWxsPSIjZmZmZmZmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNjAiIGZpbGw9IiMwMGJmZmYiPjwvY2lyY2xlPgo8Y2lyY2xlIGN4PSIyMCIgY3k9IjEwIiByPSI2MCIgZmlsbD0iIzAwYmZmZiI+PC9jaXJjbGU+Cjwvc3ZnPg==');
+
+		}
+		form input[type='text'], form input[type='password'], form input[type='email'] {
+			/*width: 250px;*/ padding: 10px 8px; font: 18px 'Helvetica', serif;
+			border: 1px solid #e3e1e1; border-radius: 6px; outline: none;
+			width: 100%; background-color: #f4f8fc99; color: #676767;
+		}
+		form input[type='text']:focus, form input[type='password']:focus, form input[type='email']:focus{
+			border: 1px solid #63aff7;
+			box-shadow: 0 0 1px 3px #90CAF9;
+		}
+		form button, form input[type='submit'] {
+			display: inline; padding: 8px 24px; border-radius: 20px;
+			border: none; background: #189efd; font-size: 18px;
+			color: white; cursor: pointer;
+			box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+		}
+		form button:hover, form input[type='submit']:hover {
+			box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+		}
+		form input[type='checkbox']{
+			margin-right: 10px;
+		}
+		form span {
+			color: red; font-size: 14px;
+		}
+		.none { display: none; }
+		form select {
+			padding: 4px; border-radius: 6px;
+			border: 1px solid #b6b6b6; cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="wrapper flex-layout center">
+		<form>
+			<div class="form-1">
+				
+				<br>
+				<center>
+					<p style="font: 36px 'Helvetica', serif; font-weight: 700; color: #00bfff;margin-bottom: 20px;">Sign In</p>
+				</center>
+				<label>username</label>
+				<input type="text" name="username" placeholder="enter username" required="">
+				<span class="error none">* Invalid username</span>
+				<br>
+				<div class="flex-layout end">
+					<p style="color: var(--secondary-color); font-size: 16px;"><a href="/random-qns">Forget username?</a></p>
+				</div>
+		
+				<br>
+				<center>
+					<button onclick="submitData(event, 'username')">Next</button>
+				</center>
+			</div>
+
+			<div class="form-2" style="display: none;">
+				
+				<br>
+				<center>
+					<p style="font: 36px 'Helvetica', serif; font-weight: 700; color: #00bfff;">Sign In</p>
+				</center>
+				<label>password</label>
+				<input type="password" name="password" placeholder="enter password" required="">
+				<span class="error none">* Incorrect password</span>
+				<br>
+				<div class="flex-layout end">
+					<p style="color: var(--secondary-color); font-size: 16px;"><a href="#">Forget username? </a></p>
+				</div>
+		
+				<br>
+				<center>
+					<button onclick="submitData(event, 'password')">Next</button>
+				</center>
+			</div>
+		</form>
+		</div>
+	</section>
+
+	<script type="text/javascript">
+		page_1 = document.querySelector('form .form-1');
+		page_2 = document.querySelector('form .form-2');
+		
+		async function submitData(event, type){
+			event.preventDefault();
+			let url = "/validate";
+			let data = {
+				'type': type,
+				'username': document.getElementsByName('username')[0].value,
+				'password': document.getElementsByName('password')[0].value
+			};
+			await fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			})
+			.then(data => data.json())
+			.then(data => {
+				console.log(data);
+				if(data.status){
+					page_1.style.display = "none";
+					page_2.style.display = "flex";
+					page_1.children[4].classList.add('none');
+					if(type == 'password'){
+						location.href = '/success';
+					}
+				}else{
+					console.log(data);
+					page_1.children[4].classList.remove('none');
+				}
+
+			})
+			.catch(error => {
+				console.log(error);
+				page_1.children[4].classList.remove('none');
+			});
+		}
+
+	</script>
+
+</body>
+</html>
